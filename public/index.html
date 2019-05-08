@@ -2,14 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>My Application</title>
+    <title>Movie Lister Application</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
     <link rel="stylesheet" href="/style.css" />
+
 </head>
 <body>
 
     <div class="container">
-        <h1>Hello There!</h1>
-        <p>To get started, edit <code>src/index.js</code>.</p>
+
+        <h1 class="movie_title">This is movie title</h1>
+        <span class="movie_rating">This is movie rating</span>
+
+
+        <div class="render_movies_container">
+            <div class="add_movie">
+
+                <label for="add_movie_name">Title of new Movie</label>
+                <input type="text" id="add_movie_name">
+                <select>
+                    <option value="1">1 Star</option>
+                    <option value="2">2 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="5">5 Stars</option>
+                </select>
+
+                <button class="add_movie">Submit</button>
+
+            </div>
+
+
+
+
+            </div>
+        </div>
+
     </div>
 
     <script src="./main.js"></script>
