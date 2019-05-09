@@ -1,58 +1,188 @@
-/**
- * es6 modules and imports
- */
 import sayHello from './hello';
+
 sayHello('World');
 
-/**
- * require style imports
- */
-const {getMovies} = require('./api.js')
 
-//
+const {
+    getMovies,
+    addMovies,
+    getMovie,
+    editMovie,
+    deleteMovie
+} = require('./api.js');
 
-getMovies().then((movies) => {
-  console.log('Here are all the movies:');
-  movies.forEach(({title, rating, id}) => {
-    console.log(`id#${id} - ${title} - rating: ${rating}`);
-  });
-}).catch((error) => {
-  alert('Oh no! Something went wrong.\nCheck the console for details.')
-  console.log(error);
-});
+const $ = require('jquery');
 
-// ADD Movies
+// Global Variables
 
-const addMovie = () => {
-  const blogPost = {title: 'Ajax Requests', body: 'Are a fun way to use JS!'}; // Value from HTML
-  const url = '/posts';
-  const options = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(blogPost),
-  };
-  fetch(url, options)
-      .then(/* post was created successfully */)
-      .catch(/* handle errors */);
+let movieArray = [];
+let renderText = '';
+let id = 0;
+
+function renderMovies() {
+    $('#movie_card').html('');
+    getMovies().then((movies) => {
+        $('#movie_card').html('');
+        movies.forEach(({title, rating, id, genre}) => {
+            $('#movie_card').append
+            (`<div class="card">
+                <ul class="list-group list-group-flush movie_card">
+                    <li>ID: ${id}</li>
+                    <li><img src="http://placeholder.pics/svg/200x150" alt="placeholder image"></li>
+                    <li>Title: ${title}</li>
+                    <li>Rating: ${rating}</li>
+                    <li>Genre: ${genre}</li>
+                <li><button class="delete" value="${id}">DELETE</button></li>
+                </ul>
+            </div>`)
+        });
+    })
 }
 
+function makeArray() {
+    movieArray = [];
+    getMovies().then((movies) => {
+        movies.forEach(function (movie) {
+            movieArray.push(movie)
+        });
+    });
+}
+
+function searchMovies(e) {
+    renderText += e.key.toLowerCase();
+    let searchArray = [];
+    movieArray.forEach(function (movie) {
+        if (movie.title.toLowerCase().startsWith(renderText)) {
+            searchArray.push(movie)
+        } else if (movie.genre.toLocaleLowerCase().startsWith(renderText)) {
+            searchArray.push(movie);
+        } else if (movie.rating == renderText) {
+            searchArray.push(movie)
+        }
+    });
+    $('#movie_card').html('');
+    searchArray.forEach(({title, rating, id, genre}) => {
+        $('#movie_card').append
+
+        (`<div class="card">
+            <ul class="list-group list-group-flush movie_card">
+                <li>ID: ${id}</li><li>Title: ${title}</li>
+                <li><img src="http://placeholder.pics/svg/200x150" alt="placeholder image"></li>
+                <li>Rating: ${rating}</li>
+                <li>Genre: ${genre}</li>
+                <li><button  value="${id}">DELETE</button></li>
+            </ul>
+        </div>`)
+    })
+}
+
+getMovies().then((movies) => {
+    movies.forEach(({title, rating, id, genre}) => {
+        $('#movie_card').append
+        (`<div class="card">
+            <ul class="list-group list-group-flush movie_card">
+                <li>ID: ${id}</li><li>Title: ${title}</li>
+                <li><img src="http://placeholder.pics/svg/200x150" alt="placeholder image"></li>
+                <li>Rating: ${rating}</li>
+                <li>Genre: ${genre}</li>
+                <li><button  value="${id}">DELETE</button></li>
+            </ul>
+        </div>`)
+    });
+    $('#loader_wrapper').addClass('hidden_loader');
+    $('#add-movie').removeClass('hidden');
+    $('#movieEdit').removeClass('hidden');
+    $('#deleteForm').removeClass('hidden');
+    makeArray();
+}).catch((error) => {
+    alert('Oh no! Something went wrong.\nCheck the console for details.')
+    console.log(error);
+});
+
+$('#add').on('click', function (e) {
+    e.preventDefault();
+    let movieName = $('#movie-name').val();
+    let rating = $('#rating').val();
+    let genre = $('#genre').val();
+    $('#movie-name').val('');
+    $('#rating').val('');
+    $('#genre').val('')
+
+    let newMovie = {
+        title: movieName,
+        rating: rating,
+        genre: genre};
+    console.log(newMovie);
+    addMovies(newMovie).then(function () {
+        console.log('Success')
+    }).catch(function () {
+        console.log('Error')
+    });
+    renderMovies();
+    makeArray()
+});
 
 
+$('#submitId').on('click', function (e) {
+    e.preventDefault();
+    id = $('#editId').val();
+    getMovie(id).then((movie) => {
+        console.log(movie);
+        $('#searchResult').html
+        (`<h3>Title: ${movie.title}</h3>
+          <h3>Rating: ${movie.rating}</h3>
+          <h3>Genre: ${movie.genre}</h3>`)
+    });
+    $('#editForm').slideDown();
+});
 
+$('#movie-submit').on('click', function (e) {
+    e.preventDefault();
+    let movieName = $('#editTitle').val();
+    let rating = $('#editRating').val();
+    let newGenre = $('#editGenre').val();
+    $('#editTitle').val('');
+    $('#editRating').val('');
+    $('#editGenre').val('');
+    let movieData = {title: movieName, rating: rating, genre: newGenre};
+    let editId = id;
+    console.log(movieData);
+    editMovie(editId, movieData)
+        .then(console.log('Success'))
+        .catch(console.log('Error'));
+    renderMovies();
+    makeArray()
+});
 
-// Create a form for adding a new movie that has fields for the movie's title and rating
-// When the form is submitted, the page should not reload / refresh, instead, your javascript should make a POST request to /api/movies with the information the user put into the form
+$('#submitDelete').on('click', function (e) {
+    e.preventDefault();
+    let movieId = $('#deleteId').val();
+    $('#deleteId').val('');
+    console.log(movieId);
+    deleteMovie(movieId)
+        .then(console.log('Success'))
+        .catch(console.log('Error'));
+    renderMovies();
+    makeArray();
+});
 
-// DELETE Movies
+$('#movie_card').on('click', '.delete', function (event) {
+    let deleteID = $(event.target).val();
+    console.log(deleteID);
+    deleteMovie(deleteID).then(function () {
+        renderMovies();
+        makeArray()
+    });
+});
 
-// UPDATE Movies
-
-// RENDER Movies
-
-
-
-
-
-
+$('#search').on('keypress', searchMovies);
+$('#search').on('keyup', function (e) {
+    if (e.key === 'Backspace') {
+        renderText = renderText.split('');
+        renderText.pop();
+        renderText = renderText.join('');
+        if (renderText === '') {
+            renderMovies()
+        }
+    }
+});

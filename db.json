@@ -1,14 +1,40 @@
 {
   "movies": [
     {
-      "title": "Casablanca",
-      "rating": "4",
+      "title": "Mean Girls",
+      "rating": "5",
+      "genre": "Comedy",
       "id": 1
     },
     {
-      "title": "Star Wars: A New Hope",
-      "rating": "5",
+      "title": "Titanic",
+      "rating": "1",
+      "genre": "Drama",
       "id": 2
+    },
+    {
+      "title": "Braveheart",
+      "rating": "4",
+      "genre": "Action",
+      "id": 3
+    },
+    {
+      "title": "Platoon",
+      "rating": "5",
+      "genre": "Action",
+      "id": 4
+    },
+    {
+      "title": "Captain Marvel",
+      "rating": "2",
+      "genre": "Action",
+      "id": 5
+    },
+    {
+      "title": "New Movie",
+      "rating": "3",
+      "genre": "Action",
+      "id": 6
     }
   ]
 }

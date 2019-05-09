@@ -1,46 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>Movie Lister Application</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-
-    <link rel="stylesheet" href="/style.css" />
-
+    <meta charset="UTF-8"/>
+    <title>Movies</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Oswald" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css"/>
 </head>
 <body>
+<header>
+    <nav>
+        <ul>
+        </ul>
+    </nav>
+</header>
+<!--TEST MODAL-->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add
+    Movie
+</button>
 
-    <div class="container">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
 
-        <h1 class="movie_title">This is movie title</h1>
-        <span class="movie_rating">This is movie rating</span>
-
-
-        <div class="render_movies_container">
-            <div class="add_movie">
-
-                <label for="add_movie_name">Title of new Movie</label>
-                <input type="text" id="add_movie_name">
-                <select>
-                    <option value="1">1 Star</option>
-                    <option value="2">2 Stars</option>
-                    <option value="3">3 Stars</option>
-                    <option value="4">4 Stars</option>
-                    <option value="5">5 Stars</option>
-                </select>
-
-                <button class="add_movie">Submit</button>
-
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add a movie!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <div class="modal-body">
+                <div class="forms">
+                    <form class="forms hidden" id="add-movie">
+                        <input type="text" id="movie-name" placeholder="Movie Name">
+                        <br>
+                        <input type="text" id="rating" placeholder="Rating">
+                        <br>
+                        <input type="text" id="genre" placeholder="Genre">
+                        <br>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="add">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
+<!--END TEST MODAL-->
+<div id="holder">
+    <!--        <div class="forms">-->
+    <!--            <form class="forms hidden" id="add-movie">-->
+    <!--                <input type="text" id="movie-name" placeholder="Movie Name">-->
+    <!--                <br>-->
+    <!--                <input type="text" id="rating" placeholder="Rating">-->
+    <!--                <br>-->
+    <!--                <input type="text" id="genre" placeholder="Genre">-->
+    <!--                <br>-->
+    <!--                <button id="add">Add</button>-->
+    <!--                <br>-->
+    <!--                <input type="text" id="search" placeholder="Search Movie">-->
+    <!--            </form>-->
+    <!--        </div>-->
+    <input type="text" id="search" placeholder="Search Movie">
+    <br>
+    <div id="movieEdit" class="hidden">
+        <input type="text" id="editId" placeholder="Enter ID">
+        <button id="submitId">Edit</button>
+    </div>
+    <h1 id="yourMovie" class="hidden">Results:</h1>
+    <div id="searchResult"></div>
+    <form id="editForm" class="hidden">
+        <input type="text" id="editTitle" placeholder="Enter new title">
+        <input type="text" id="editRating" placeholder="Enter new rating">
+        <input type="text" id="editGenre" placeholder="Enter new genre">
+        <button id="movie-submit">Submit Movie</button>
+    </form>
+    <div class="container">
+        <!--        LOADING SPINNER-->
+        <div class="loader_container">
+            <div id="loader_wrapper">
+                <svg id="loader" class="hourglass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 206"
+                     preserveAspectRatio="none">
+                    <path class="middle"
+                          d="M120 0H0v206h120V0zM77.1 133.2C87.5 140.9 92 145 92 152.6V178H28v-25.4c0-7.6 4.5-11.7 14.9-19.4 6-4.5 13-9.6 17.1-17 4.1 7.4 11.1 12.6 17.1 17zM60 89.7c-4.1-7.3-11.1-12.5-17.1-17C32.5 65.1 28 61 28 53.4V28h64v25.4c0 7.6-4.5 11.7-14.9 19.4-6 4.4-13 9.6-17.1 16.9z"/>
+                    <path class="outer"
+                          d="M93.7 95.3c10.5-7.7 26.3-19.4 26.3-41.9V0H0v53.4c0 22.5 15.8 34.2 26.3 41.9 3 2.2 7.9 5.8 9 7.7-1.1 1.9-6 5.5-9 7.7C15.8 118.4 0 130.1 0 152.6V206h120v-53.4c0-22.5-15.8-34.2-26.3-41.9-3-2.2-7.9-5.8-9-7.7 1.1-2 6-5.5 9-7.7zM70.6 103c0 18 35.4 21.8 35.4 49.6V192H14v-39.4c0-27.9 35.4-31.6 35.4-49.6S14 81.2 14 53.4V14h92v39.4C106 81.2 70.6 85 70.6 103z"/>
+                </svg>
+            </div>
+        </div>
+        <!--        END LOADING SPINNER-->
 
+        <div class="card-columns">
+            <div id="movie_card">
 
             </div>
         </div>
-
     </div>
+</div>
 
-    <script src="./main.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="main.js"></script>
 </body>
 </html>
