@@ -1,5 +1,6 @@
 import sayHello from './hello';
 
+
 sayHello('World');
 
 
@@ -63,16 +64,16 @@ function searchMovies(e) {
     $('#movie_card').html('');
     searchArray.forEach(({title, rating, id, genre}) => {
         $('#movie_card').append
-
         (`<div class="card">
             <ul class="list-group list-group-flush movie_card">
                 <li>ID: ${id}</li><li>Title: ${title}</li>
                 <li><img src="http://placeholder.pics/svg/200x150" alt="placeholder image"></li>
                 <li>Rating: ${rating}</li>
                 <li>Genre: ${genre}</li>
-                <li><button  value="${id}">DELETE</button></li>
+                <li><button class="delete" value="${id}">DELETE</button></li>
             </ul>
         </div>`)
+
     })
 }
 
@@ -85,7 +86,7 @@ getMovies().then((movies) => {
                 <li><img src="http://placeholder.pics/svg/200x150" alt="placeholder image"></li>
                 <li>Rating: ${rating}</li>
                 <li>Genre: ${genre}</li>
-                <li><button  value="${id}">DELETE</button></li>
+                <li><button class="delete" value="${id}">DELETE</button></li>
             </ul>
         </div>`)
     });
@@ -93,9 +94,11 @@ getMovies().then((movies) => {
     $('#add-movie').removeClass('hidden');
     $('#movieEdit').removeClass('hidden');
     $('#deleteForm').removeClass('hidden');
+
     makeArray();
+
 }).catch((error) => {
-    alert('Oh no! Something went wrong.\nCheck the console for details.')
+    alert('Error')
     console.log(error);
 });
 
@@ -114,14 +117,11 @@ $('#add').on('click', function (e) {
         genre: genre};
     console.log(newMovie);
     addMovies(newMovie).then(function () {
-        console.log('Success')
     }).catch(function () {
-        console.log('Error')
     });
     renderMovies();
     makeArray()
 });
-
 
 $('#submitId').on('click', function (e) {
     e.preventDefault();
@@ -144,7 +144,10 @@ $('#movie-submit').on('click', function (e) {
     $('#editTitle').val('');
     $('#editRating').val('');
     $('#editGenre').val('');
-    let movieData = {title: movieName, rating: rating, genre: newGenre};
+    let movieData = {
+        title: movieName,
+        rating: rating,
+        genre: newGenre};
     let editId = id;
     console.log(movieData);
     editMovie(editId, movieData)
@@ -158,7 +161,6 @@ $('#submitDelete').on('click', function (e) {
     e.preventDefault();
     let movieId = $('#deleteId').val();
     $('#deleteId').val('');
-    console.log(movieId);
     deleteMovie(movieId)
         .then(console.log('Success'))
         .catch(console.log('Error'));
@@ -168,7 +170,6 @@ $('#submitDelete').on('click', function (e) {
 
 $('#movie_card').on('click', '.delete', function (event) {
     let deleteID = $(event.target).val();
-    console.log(deleteID);
     deleteMovie(deleteID).then(function () {
         renderMovies();
         makeArray()

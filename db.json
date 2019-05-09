@@ -1,15 +1,9 @@
 {
   "movies": [
     {
-      "title": "Mean Girls",
-      "rating": "5",
+      "title": "Titanic Edit",
+      "rating": "4",
       "genre": "Comedy",
-      "id": 1
-    },
-    {
-      "title": "Titanic",
-      "rating": "1",
-      "genre": "Drama",
       "id": 2
     },
     {
@@ -25,16 +19,22 @@
       "id": 4
     },
     {
-      "title": "Captain Marvel",
-      "rating": "2",
-      "genre": "Action",
-      "id": 5
-    },
-    {
       "title": "New Movie",
       "rating": "3",
       "genre": "Action",
       "id": 6
+    },
+    {
+      "title": "Movie Nav Bar",
+      "rating": "5",
+      "genre": "Comedy",
+      "id": 7
+    },
+    {
+      "title": "Avengers 2",
+      "rating": "3",
+      "genre": "Action",
+      "id": 8
     }
   ]
 }

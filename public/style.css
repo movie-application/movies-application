@@ -27,7 +27,7 @@ h1,
 h2,
 h3,
 h4,
-h5 {
+h5{
     font-family: 'Oswald', sans-serif;
 }
 
@@ -55,7 +55,8 @@ h5 {
 .movie_card {
     height: auto;
     text-align: center;
-    width: 210px;
+    background-color: #FFF;
+    width: 270px;
     padding: 5px;
     border: 1px solid gainsboro;
     border-radius: 3px;
@@ -68,7 +69,9 @@ h5 {
     -webkit-box-shadow: -3px 3px 18px 0px rgba(75, 73, 76, 0.29);
 }
 
-
+::-ms-clear {
+    display: none;
+}
 
 /*LOADING SPINNER*/
 

@@ -6,68 +6,59 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Oswald" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="/style.css"/>
 </head>
 <body>
 <header>
-    <nav>
-        <ul>
-        </ul>
-    </nav>
-</header>
-<!--TEST MODAL-->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add
-    Movie
-</button>
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <a class="navbar-brand" href="#"><i class="fas fa-film fa-3x"></i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-nav mr-auto">
 
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add a movie!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="forms">
-                    <form class="forms hidden" id="add-movie">
-                        <input type="text" id="movie-name" placeholder="Movie Name">
-                        <br>
-                        <input type="text" id="rating" placeholder="Rating">
-                        <br>
-                        <input type="text" id="genre" placeholder="Genre">
-                        <br>
-                    </form>
+                <form class="form-inline my-2 my-lg-0">
+                    <input id="search"class="form-control mr-sm-2" type="text" placeholder="Search Movies" aria-label="Search">
+                </form>
+
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#movieAddModal" data-whatever="@mdo">Add Movie</button>
+                <div class="modal fade" id="movieAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Add a movie!</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="forms">
+                                    <form class="forms hidden" id="add-movie">
+                                        <input type="text" id="movie-name" placeholder="Movie Name">
+                                        <br>
+                                        <input type="text" id="rating" placeholder="Rating">
+                                        <br>
+                                        <input type="text" id="genre" placeholder="Genre">
+                                        <br>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button id="add">Add</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button id="add">Add</button>
-            </div>
         </div>
-    </div>
-</div>
+    </nav>
+</header>
 
-
-<!--END TEST MODAL-->
 <div id="holder">
-    <!--        <div class="forms">-->
-    <!--            <form class="forms hidden" id="add-movie">-->
-    <!--                <input type="text" id="movie-name" placeholder="Movie Name">-->
-    <!--                <br>-->
-    <!--                <input type="text" id="rating" placeholder="Rating">-->
-    <!--                <br>-->
-    <!--                <input type="text" id="genre" placeholder="Genre">-->
-    <!--                <br>-->
-    <!--                <button id="add">Add</button>-->
-    <!--                <br>-->
-    <!--                <input type="text" id="search" placeholder="Search Movie">-->
-    <!--            </form>-->
-    <!--        </div>-->
-    <input type="text" id="search" placeholder="Search Movie">
     <br>
     <div id="movieEdit" class="hidden">
         <input type="text" id="editId" placeholder="Enter ID">
@@ -76,13 +67,12 @@
     <h1 id="yourMovie" class="hidden">Results:</h1>
     <div id="searchResult"></div>
     <form id="editForm" class="hidden">
-        <input type="text" id="editTitle" placeholder="Enter new title">
+        <input type="text" id="editTitle">
         <input type="text" id="editRating" placeholder="Enter new rating">
         <input type="text" id="editGenre" placeholder="Enter new genre">
         <button id="movie-submit">Submit Movie</button>
     </form>
     <div class="container">
-        <!--        LOADING SPINNER-->
         <div class="loader_container">
             <div id="loader_wrapper">
                 <svg id="loader" class="hourglass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 206"
@@ -94,13 +84,11 @@
                 </svg>
             </div>
         </div>
-        <!--        END LOADING SPINNER-->
 
         <div class="card-columns">
-            <div id="movie_card">
-
-            </div>
+            <div id="movie_card"></div>
         </div>
+
     </div>
 </div>
 
