@@ -20,6 +20,13 @@ module.exports = {
             .then(data => data.json())
     },
 
+    getPosters: (movies) => {
+
+        let posterURL = 'http://www.omdbapi.com/?apikey=7a6b2b5d&t=';
+        let titleSearch = movies.title;
+        console.log(titleSearch);
+        return fetch(posterURL + titleSearch)
+    },
     editMovie: (id, movie) => {
         console.log(movie.id);
         return fetch(`/api/movies/${id}`, {

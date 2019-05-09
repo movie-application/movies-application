@@ -69,10 +69,13 @@ h5{
     -webkit-box-shadow: -3px 3px 18px 0px rgba(75, 73, 76, 0.29);
 }
 
-::-ms-clear {
-    display: none;
+.add-movie-button {
+    margin-left: 700px;
 }
 
+.edit-movie-button {
+    margin-left: 20px;
+}
 /*LOADING SPINNER*/
 
 #wrapper {

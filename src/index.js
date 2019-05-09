@@ -8,6 +8,7 @@ const {
     getMovies,
     addMovies,
     getMovie,
+    getPosters,
     editMovie,
     deleteMovie
 } = require('./api.js');
@@ -48,6 +49,12 @@ function makeArray() {
         });
     });
 }
+
+function getMoviePoster (movieTitle) {
+    console.log(movieTitle.title)
+}
+
+getMoviePoster(getPosters)
 
 function searchMovies(e) {
     renderText += e.key.toLowerCase();
@@ -133,7 +140,7 @@ $('#submitId').on('click', function (e) {
           <h3>Rating: ${movie.rating}</h3>
           <h3>Genre: ${movie.genre}</h3>`)
     });
-    $('#editForm').slideDown();
+    // $('#editForm').slideDown();
 });
 
 $('#movie-submit').on('click', function (e) {

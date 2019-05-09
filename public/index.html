@@ -23,10 +23,9 @@
                 <form class="form-inline my-2 my-lg-0">
                     <input id="search"class="form-control mr-sm-2" type="text" placeholder="Search Movies" aria-label="Search">
                 </form>
-
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#movieAddModal" data-whatever="@mdo">Add Movie</button>
-                <div class="modal fade" id="movieAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                     aria-hidden="true">
+                <!--ADD MOVIE BUTTON-->
+                <button type="button" class="btn btn-primary add-movie-button" data-toggle="modal" data-target="#movieAddModal" data-whatever="@mdo">Add Movie</button>
+                <div class="modal fade" id="movieAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -48,30 +47,56 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button id="add">Add</button>
+                                <button class="btn btn-primary" id="add">Add</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- EDIT MOVIE -->
+
+             <button type="button" class="btn btn-primary edit-movie-button" data-toggle="modal" data-target="#editMovieModal" data-whatever="@mdo">Edit Movie</button>
+
+                <div class="modal fade" id="editMovieModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editModal">Edit Movie!</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div id="movieEdit" class="hidden">
+                                    <input type="text" id="editId" placeholder="Enter ID">
+                                    <button id="submitId">Edit</button>
+                                </div>
+
+                                <h1 id="yourMovie" class="hidden">Results:</h1>
+                                <div id="searchResult"></div>
+                                <form id="editForm">
+                                    <input type="text" id="editTitle" placeholder="Enter new name">
+                                    <input type="text" id="editRating" placeholder="Enter new rating">
+                                    <input type="text" id="editGenre" placeholder="Enter new genre">
+                                </form>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button class="btn btn-primary" id="movie-submit">Submit Movie</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- END EDIT MOVIE -->
+
             </div>
         </div>
     </nav>
 </header>
 
 <div id="holder">
-    <br>
-    <div id="movieEdit" class="hidden">
-        <input type="text" id="editId" placeholder="Enter ID">
-        <button id="submitId">Edit</button>
-    </div>
-    <h1 id="yourMovie" class="hidden">Results:</h1>
-    <div id="searchResult"></div>
-    <form id="editForm" class="hidden">
-        <input type="text" id="editTitle">
-        <input type="text" id="editRating" placeholder="Enter new rating">
-        <input type="text" id="editGenre" placeholder="Enter new genre">
-        <button id="movie-submit">Submit Movie</button>
-    </form>
+
     <div class="container">
         <div class="loader_container">
             <div id="loader_wrapper">
