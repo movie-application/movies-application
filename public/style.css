@@ -51,6 +51,10 @@ header {
     background-color: #F3F7F7;
 }
 
+.delete {
+    margin: 10px;
+}
+
 /*MOVIE CARDS*/
 
 .movie_card {
