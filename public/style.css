@@ -9,11 +9,7 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-input {
-    height: 20px;
-    width: 200px;
-    border-radius: 3px;
-}
+
 
 ul {
     list-style-type: none;
@@ -31,11 +27,15 @@ h5{
     font-family: 'Oswald', sans-serif;
 }
 
+header {
+    margin-bottom: 20px;
+}
+
 .hidden_loader {
     display: none;
 }
 
-.hidden {
+.hidden_class {
     display: none;
 }
 
@@ -45,6 +45,7 @@ h5{
 }
 
 .card {
+    width: 33%;
     margin-top: 10px;
     border-color: #F3F7F7;
     background-color: #F3F7F7;
@@ -69,13 +70,18 @@ h5{
     -webkit-box-shadow: -3px 3px 18px 0px rgba(75, 73, 76, 0.29);
 }
 
+.search-input {
+    margin-left: 155px;
+}
+
 .add-movie-button {
-    margin-left: 700px;
+    margin-left: 550px;
 }
 
 .edit-movie-button {
     margin-left: 20px;
 }
+
 /*LOADING SPINNER*/
 
 #wrapper {
@@ -127,7 +133,7 @@ h5{
 }
 
 .middle {
-    fill: #fff;
+    fill: #F3F7F7;
 }
 
 @-webkit-keyframes hourglass {

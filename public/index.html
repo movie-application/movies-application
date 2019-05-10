@@ -2,30 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>Movies</title>
+    <title>Movie Application</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Oswald" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="stylesheet" href="/style.css"/>
 </head>
 <body>
 <header>
     <nav class="navbar navbar-expand-lg bg-dark">
         <a class="navbar-brand" href="#"><i class="fas fa-film fa-3x"></i></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="navbar-nav mr-auto">
-
+            <div class="navbar-nav">
                 <form class="form-inline my-2 my-lg-0">
-                    <input id="search"class="form-control mr-sm-2" type="text" placeholder="Search Movies" aria-label="Search">
+                    <input id="search" class="form-control mr-sm-2 search-input" type="text" placeholder="Search Movies"
+                           aria-label="Search">
                 </form>
                 <!--ADD MOVIE BUTTON-->
-                <button type="button" class="btn btn-primary add-movie-button" data-toggle="modal" data-target="#movieAddModal" data-whatever="@mdo">Add Movie</button>
-                <div class="modal fade" id="movieAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <button type="button" class="btn btn-primary add-movie-button" data-toggle="modal"
+                        data-target="#movieAddModal" data-whatever="@mdo">Add Movie
+                </button>
+                <div class="modal fade" id="movieAddModal" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -35,12 +41,13 @@
                             </div>
                             <div class="modal-body">
                                 <div class="forms">
-                                    <form class="forms hidden" id="add-movie">
-                                        <input type="text" id="movie-name" placeholder="Movie Name">
+                                    <form class="forms hidden_class" id="add-movie">
+                                        <input class="form-control" type="text" id="movie-name"
+                                               placeholder="Movie Name">
                                         <br>
-                                        <input type="text" id="rating" placeholder="Rating">
+                                        <input class="form-control" type="text" id="rating" placeholder="Rating">
                                         <br>
-                                        <input type="text" id="genre" placeholder="Genre">
+                                        <input class="form-control" type="text" id="genre" placeholder="Genre">
                                         <br>
                                     </form>
                                 </div>
@@ -54,9 +61,12 @@
                 </div>
                 <!-- EDIT MOVIE -->
 
-             <button type="button" class="btn btn-primary edit-movie-button" data-toggle="modal" data-target="#editMovieModal" data-whatever="@mdo">Edit Movie</button>
+                <button type="button" class="btn btn-primary edit-movie-button" data-toggle="modal"
+                        data-target="#editMovieModal" data-whatever="@mdo">Edit Movie
+                </button>
 
-                <div class="modal fade" id="editMovieModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="editMovieModal" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -65,55 +75,51 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-
-                                <div id="movieEdit" class="hidden">
-                                    <input type="text" id="editId" placeholder="Enter ID">
-                                    <button id="submitId">Edit</button>
+                                <div id="movieEdit" class="hidden_class">
+                                    <input class="form-control" type="text" id="editId" placeholder="Enter ID">
+                                    <br>
+                                    <button class="btn btn-primary" type="button" id="submitId">Edit</button>
+                                    <br>
                                 </div>
-
-                                <h1 id="yourMovie" class="hidden">Results:</h1>
+                                <br>
                                 <div id="searchResult"></div>
                                 <form id="editForm">
-                                    <input type="text" id="editTitle" placeholder="Enter new name">
-                                    <input type="text" id="editRating" placeholder="Enter new rating">
-                                    <input type="text" id="editGenre" placeholder="Enter new genre">
+                                    <input class="form-control" type="text" id="editTitle" placeholder="Enter new name">
+                                    <br>
+                                    <input class="form-control" type="text" id="editRating" placeholder="Enter new rating">
+                                    <br>
+                                    <input class="form-control" type="text" id="editGenre" placeholder="Enter new genre">
+                                    <br>
                                 </form>
-
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button class="btn btn-primary" id="movie-submit">Submit Movie</button>
+                                <button class="btn btn-warning" id="movie-submit">Submit Edits</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-            <!-- END EDIT MOVIE -->
-
+                <!-- END EDIT MOVIE -->
             </div>
         </div>
     </nav>
 </header>
 
-<div id="holder">
-
-    <div class="container">
-        <div class="loader_container">
-            <div id="loader_wrapper">
-                <svg id="loader" class="hourglass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 206"
-                     preserveAspectRatio="none">
-                    <path class="middle"
-                          d="M120 0H0v206h120V0zM77.1 133.2C87.5 140.9 92 145 92 152.6V178H28v-25.4c0-7.6 4.5-11.7 14.9-19.4 6-4.5 13-9.6 17.1-17 4.1 7.4 11.1 12.6 17.1 17zM60 89.7c-4.1-7.3-11.1-12.5-17.1-17C32.5 65.1 28 61 28 53.4V28h64v25.4c0 7.6-4.5 11.7-14.9 19.4-6 4.4-13 9.6-17.1 16.9z"/>
-                    <path class="outer"
-                          d="M93.7 95.3c10.5-7.7 26.3-19.4 26.3-41.9V0H0v53.4c0 22.5 15.8 34.2 26.3 41.9 3 2.2 7.9 5.8 9 7.7-1.1 1.9-6 5.5-9 7.7C15.8 118.4 0 130.1 0 152.6V206h120v-53.4c0-22.5-15.8-34.2-26.3-41.9-3-2.2-7.9-5.8-9-7.7 1.1-2 6-5.5 9-7.7zM70.6 103c0 18 35.4 21.8 35.4 49.6V192H14v-39.4c0-27.9 35.4-31.6 35.4-49.6S14 81.2 14 53.4V14h92v39.4C106 81.2 70.6 85 70.6 103z"/>
-                </svg>
-            </div>
+<div class="container">
+    <div class="loader_container">
+        <div id="loader_wrapper">
+            <svg id="loader" class="hourglass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 206"
+                 preserveAspectRatio="none">
+                <path class="middle"
+                      d="M120 0H0v206h120V0zM77.1 133.2C87.5 140.9 92 145 92 152.6V178H28v-25.4c0-7.6 4.5-11.7 14.9-19.4 6-4.5 13-9.6 17.1-17 4.1 7.4 11.1 12.6 17.1 17zM60 89.7c-4.1-7.3-11.1-12.5-17.1-17C32.5 65.1 28 61 28 53.4V28h64v25.4c0 7.6-4.5 11.7-14.9 19.4-6 4.4-13 9.6-17.1 16.9z"/>
+                <path class="outer"
+                      d="M93.7 95.3c10.5-7.7 26.3-19.4 26.3-41.9V0H0v53.4c0 22.5 15.8 34.2 26.3 41.9 3 2.2 7.9 5.8 9 7.7-1.1 1.9-6 5.5-9 7.7C15.8 118.4 0 130.1 0 152.6V206h120v-53.4c0-22.5-15.8-34.2-26.3-41.9-3-2.2-7.9-5.8-9-7.7 1.1-2 6-5.5 9-7.7zM70.6 103c0 18 35.4 21.8 35.4 49.6V192H14v-39.4c0-27.9 35.4-31.6 35.4-49.6S14 81.2 14 53.4V14h92v39.4C106 81.2 70.6 85 70.6 103z"/>
+            </svg>
         </div>
+    </div>
 
-        <div class="card-columns">
-            <div id="movie_card"></div>
-        </div>
-
+    <div class="card-columns">
+        <div id="movie_card"></div>
     </div>
 </div>
 

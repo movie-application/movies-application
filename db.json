@@ -1,9 +1,9 @@
 {
   "movies": [
     {
-      "title": "Titanic Edit",
-      "rating": "4",
-      "genre": "Comedy",
+      "title": "Titanic",
+      "rating": "5",
+      "genre": "Drama",
       "id": 2
     },
     {
@@ -13,28 +13,46 @@
       "id": 3
     },
     {
-      "title": "Platoon",
-      "rating": "5",
-      "genre": "Action",
-      "id": 4
+      "title": "Barber Shop",
+      "rating": "3",
+      "genre": "Comedy",
+      "id": 12
     },
     {
-      "title": "Newest Movie",
-      "rating": "1",
-      "genre": "Drama",
-      "id": 6
-    },
-    {
-      "title": "Movie Nav Bar",
+      "title": "Clueless",
       "rating": "5",
       "genre": "Comedy",
-      "id": 7
+      "id": 13
     },
     {
-      "title": "Avengers 2",
+      "title": "27 Dresses",
+      "rating": "3",
+      "genre": "Drama",
+      "id": 14
+    },
+    {
+      "title": "The Notebook",
       "rating": "3",
       "genre": "Action",
-      "id": 8
+      "id": 15
+    },
+    {
+      "title": "How to Lose A Guy in 5 Days",
+      "rating": "4",
+      "genre": "Drama",
+      "id": 16
+    },
+    {
+      "title": "Legally Blonde",
+      "rating": "4",
+      "genre": "Comedy",
+      "id": 17
+    },
+    {
+      "title": "Pitch Perfect",
+      "rating": "2",
+      "genre": "Musical",
+      "id": 18
     }
   ]
 }
